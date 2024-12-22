@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup
 import os
 from datetime import datetime
 import json
+from dotenv import load_dotenv
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) 
-token="5f254a86b88a4e188c3d6a768aeee536d8dd15effba"
-proxyModeUrl = "http://{}:@proxy.scrape.do:8080".format(token)
+load_dotenv()
+token=os.getenv("proxy_token")
+proxyModeUrl = os.getenv("proxy_module_url").format(token)
 
 proxies={
     "http": proxyModeUrl,
